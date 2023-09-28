@@ -1,0 +1,63 @@
+{% extends "user/home_layout.html"%}
+{% block content%}
+<div class="content" style="background-color: white; padding:3em">
+<input type="text" class="form-control border-sucess noround" id="fullname">
+<input value="{{csrf_token()}}" type="hidden" name="csrf_token">
+
+<div class="mb-3 border-primary" id="feedback">
+<button class="btn btn-danger noround" id="btnload">Click Me</button>
+<button class="btn btn-danger noround" id="btn_name">Submit name</button>
+</div>
+<div class="mb-3 border-primary" id="ajaxfeedback">
+
+</div>
+<div class="row">
+    <div class="col">
+        <input type="text" id="email" class="form-control noround border-success">
+    </div>
+    <div class="col">
+        <button id="check" class="btn btn-warning noround" type="button">Check Availiability</button>
+
+    </div>
+    <div class="col" id="avail"></div>
+</div>
+</div>
+{% endblock%}
+
+{%block customjs %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#check").click(function(){
+           var email=$('#email').val()
+            
+
+           var send="email="+email
+            $('#avail').load("/checkusername/",send,function(){
+
+            })
+        })
+
+        $("#btn_name").click(function(){
+           var fname = $('#fullname').val()
+           //  csrf=$('#csrf_token').val()
+            
+            //data2send = "fullname="+fname
+            var data2send="fullname="+fname
+             $('#ajaxfeedback').load("/submission/",data2send,function(){
+                $(this).addClass('alert alert-warning')
+            })
+        })
+
+        $("#btnload").click(function(){
+            $('#ajaxfeedback').load("/submission/")
+        })
+
+    })
+       
+
+
+   
+
+</script>
+
+{% endblock%}

@@ -1,0 +1,54 @@
+
+{% extends "user/home_layout.html"%}
+{% block content%}
+
+<main class="form-signin w-100 m-auto">
+ 
+    <img class="mb-4" src="/static/images/bw.png" alt="" height="100">
+<h1 class="h3 mb-3 fw-normal">New User Registration</h1>
+ 
+ <div class="card-body col-md-12">
+<form method="POST" action="">
+  {{donform.csrf_token}}
+  <h2>Donation Form: Thank you!</h2>
+  <p>Kindly complete the form below with the amount you want to donaTE.CLICK ON THE BUTTON AND IT WILL take you to a page where you will input your card details</p>
+  <div>
+      
+  </div>
+ 
+  <div class="row mb-3">
+      <div class="col-md-12">
+
+      <div class="form-floating mb-3 mb-md-0">
+        {{donform.fullname(class_="form-control",placeholder="Enter your fullname" , value=deets.user_fullname)}}
+        {{donform.fullname.label}}
+      </div>
+      </div>
+
+  </div>
+  <div class="form-floating mb-3">
+    {{donform.email(class_="form-control",placeholder="name@example.com",value=deets.user_email)}}
+        {{donform.email.label}}
+
+  </div>
+ 
+      <div class="col-md">
+          <div class="form-floating mb-3 mb-md-0">
+            {{donform.amt(class_="form-control",placeholder="input amount")}}
+        {{donform.amt.label}}
+         {{donform.hidden_tag()}}      
+          </div>
+      </div>
+  </div>
+  <div class="mt-4 mb-0">
+    <div class="d-grid">   
+      {{donform.btnsubmit(class_="btn btn-danger btn-block btn-lg")}}
+    </div>
+</div>
+</form>
+</div>
+
+</main>
+{% endblock content%}
+{% block partner%}{% endblock partner%}
+{% block featured%}{% endblock featured%}
